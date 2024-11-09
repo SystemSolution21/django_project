@@ -11,3 +11,11 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+def main() -> None:
+    pass
+
+
+if __name__ == "__main__":
+    main()

@@ -14,3 +14,11 @@ def about(request) -> HttpResponse:
     return render(
         request=request, template_name="blog/about.html", context={"title": "About"}
     )
+
+
+def main() -> None:
+    pass
+
+
+if __name__ == "__main__":
+    main()
