@@ -17,9 +17,9 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.urls.resolvers import URLResolver
 
-urlpatterns: list[URLResolver] = [
+
+urlpatterns = [
     path(route="admin/", view=admin.site.urls),
     path(route="", view=include(arg="blog.urls")),
 ]
