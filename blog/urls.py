@@ -6,11 +6,3 @@ urlpatterns: list[URLPattern] = [
     path(route="", view=views.home, name="blog-home"),
     path(route="about/", view=views.about, name="blog-about"),
 ]
-
-
-def main() -> None:
-    pass
-
-
-if __name__ == "__main__":
-    main()
