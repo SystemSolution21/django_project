@@ -16,6 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
 
@@ -23,5 +24,18 @@ from users import views as user_views
 urlpatterns = [
     path(route="admin/", view=admin.site.urls),
     path(route="register/", view=user_views.register, name="register"),
+    path(route="profile/", view=user_views.profile, name="profile"),
+    path(
+        route="login/",
+        view=auth_views.LoginView.as_view(template_name="users/login.html"),
+        name="login",
+    ),
+    # path(
+    #     route="logout/",
+    #     view=auth_views.LogoutView.as_view(template_name="users/logout.html"),
+    #     name="logout",
+    # ),
+    # use users defined logout_view to handle logout 'GET' method
+    path(route="logout/", view=user_views.logout_view, name="logout"),
     path(route="", view=include(arg="blog.urls")),
 ]
