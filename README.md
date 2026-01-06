@@ -21,7 +21,7 @@ A Django web application featuring a blog system with modern web development pra
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/SystemSolution21/django_project.git
    cd django_project
    ```
 
@@ -69,14 +69,65 @@ Visit `http://127.0.0.1:8000/` to view the application.
 
 ```project structure
 django_project/
-├── blog/                 # Blog application
-├── django_project/       # Main project settings
-├── static/              # Static files (CSS, JS, images)
-├── media/               # User uploaded files
-├── templates/           # HTML templates
-├── requirements.txt     # Python dependencies
-├── manage.py           # Django management script
-└── README.md           # This file
+├── blog/             # Blog application
+│   ├── migrations/       # Database migrations
+│   |    ├── __init__.py       # Application package
+│   |    └── 0001_initial.py   # Initial migration
+|   |
+│   ├── static/           # Static files (CSS, JS)
+│   |    └── blog/
+│   |        └── main.css
+│   |
+│   ├── templates/        # Blog templates
+│   |    └── blog/
+│   |        ├── about.html
+│   |        ├── base.html
+│   |        └── home.html
+│   |
+│   ├── __init__.py       # Application package
+│   ├── admin.py          # Admin interface configuration
+│   ├── apps.py           # Application configuration
+│   ├── models.py         # Database models
+│   ├── tests.py          # Application tests
+│   ├── urls.py           # Application URLs
+│   └── views.py          # Application views
+|
+├── mysite/          # Main project settings
+│   ├── __init__.py       # Application package
+│   ├── asgi.py           # ASGI configuration
+│   ├── settings.py       # Django settings
+│   ├── urls.py           # Project URLs
+│   └── wsgi.py           # WSGI configuration
+|
+├── users/             # User authentication application
+│   ├── migrations/       # Database migrations
+│   |    └── __init__.py   # Initial migration
+|   |
+│   ├── templates/        # User templates
+│   |    └── users/
+│   |        ├── login.html
+│   |        ├── logout.html
+│   |        ├── profile.html
+│   |        └── register.html
+|   |
+│   ├── __init__.py       # Application package
+│   ├── admin.py          # Admin interface configuration
+│   ├── apps.py           # Application configuration
+│   ├── forms.py          # User forms
+│   ├── models.py         # User models
+│   ├── tests.py          # Application tests
+│   ├── urls.py           # Application URLs
+│   └── views.py          # Application views
+|
+├── .env                  # Environment variables
+├── .env.example          # Environment variables example
+├── .gitignore            # Git ignore file
+├── db.sqlite3            # SQLite database
+├── LICENSE               # License file
+├── manage.py             # Django management script
+├── poetry.lock           # Poetry lock file
+├── pyproject.toml        # Poetry project file
+└── README.md             # This file
 ```
 
 ## Usage
