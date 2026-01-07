@@ -1,6 +1,7 @@
 from django.db.models.manager import BaseManager
 from django.http import HttpResponse
 from django.shortcuts import render
+
 from .models import Post
 
 
@@ -14,11 +15,3 @@ def about(request) -> HttpResponse:
     return render(
         request=request, template_name="blog/about.html", context={"title": "About"}
     )
-
-
-def main() -> None:
-    pass
-
-
-if __name__ == "__main__":
-    main()

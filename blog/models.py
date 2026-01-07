@@ -1,6 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
 
 
 class Post(models.Model):
@@ -11,11 +11,3 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
-
-
-def main() -> None:
-    pass
-
-
-if __name__ == "__main__":
-    main()
