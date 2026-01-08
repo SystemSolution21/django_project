@@ -28,14 +28,16 @@ A Django web application featuring a blog system with modern web development pra
 2. **Create virtual environment**
 
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   python -m venv .venv 
+   or poetry shell
+   (django_project).venv\Scripts\activate
    ```
 
 3. **Install dependencies**
 
    ```bash
    pip install -r requirements.txt
+   or poetry sync
    ```
 
 4. **Set up environment variables**
