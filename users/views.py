@@ -25,7 +25,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            form.cleaned_data.get("username")
+            username = form.cleaned_data.get("username")
             messages.success(
                 request=request,
                 message="Your account has been created! You are now able to login.",
