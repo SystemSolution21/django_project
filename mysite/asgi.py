@@ -1,3 +1,4 @@
+# mysite/asgi.py
 """
 ASGI config for mysite project.
 
@@ -7,10 +8,14 @@ For more information on this file, see
 https://docs.djangoproject.com/en/5.1/howto/deployment/asgi/
 """
 
+# Import built-in libraries
 import os
 
+# Import django libraries
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+# Set environment variable
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 
+# Get ASGI application
 application = get_asgi_application()

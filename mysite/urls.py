@@ -1,3 +1,4 @@
+# mysite/urls.py
 """
 URL configuration for mysite project.
 
@@ -15,14 +16,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+# Import django libraries
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 
+# Import local modules
 from users import views as user_views
 
+# Define urlpatterns
 urlpatterns = [
     path(route="admin/", view=admin.site.urls),
     path(route="register/", view=user_views.register, name="register"),

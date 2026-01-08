@@ -1,3 +1,4 @@
+# mysite/settings.py
 """
 Django settings for mysite project.
 
@@ -10,6 +11,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+# Import built-in libraries
 import os
 from pathlib import Path
 
@@ -26,6 +28,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "your-secret-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", True))
 
+# SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = []
 
 
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 ]
 
+# Middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -54,8 +58,10 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# URL configuration
 ROOT_URLCONF = "mysite.urls"
 
+# Template configuration
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -72,6 +78,7 @@ TEMPLATES = [
     },
 ]
 
+# WSGI configuration
 WSGI_APPLICATION = "mysite.wsgi.application"
 
 
