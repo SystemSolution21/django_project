@@ -1,13 +1,26 @@
+# users/views.py
+
+# Import django libraries
 from django.contrib import messages
 from django.contrib.auth import logout  # To handle GET method error
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
+# Import local modules
 from .forms import UserRegisterForm
 
 
 # users registration
 def register(request):
+    """User registration view.
+
+    Args:
+        request (HttpRequest): HTTP request.
+
+    Returns:
+        HttpResponse: HTTP response.
+    """
+
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -33,7 +46,7 @@ def logout_view(request):
     return render(request=request, template_name="users/logout.html")
 
 
-# users profile
+# Login required to view profile
 @login_required
 def profile(request):
     return render(request=request, template_name="users/profile.html")
