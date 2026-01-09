@@ -13,7 +13,7 @@
             >{{ post.date_posted|date:"F d, Y, H:i" }}</small
           >
         </div>
-        <h2 class="article-title"><a href="#">{{ post.title }}</a></h2>
+        <h2 class="article-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
         <p class="article-content">{{ post.content }}</p>
       </div>
     </article>
