@@ -12,12 +12,16 @@ from .views import (
     PostDetailView,
     PostListView,
     PostUpdateView,
+    UserPostListView,
 )
 
 # Define urlpatterns
 urlpatterns: list[URLPattern] = [
     # path(route="", view=views.home, name="blog-home"), # function base view
     path(route="", view=PostListView.as_view(), name="blog-home"),
+    path(
+        route="user/<str:username>/", view=UserPostListView.as_view(), name="user-posts"
+    ),
     path(route="post/<int:pk>/", view=PostDetailView.as_view(), name="post-detail"),
     path(route="post/new/", view=PostCreateView.as_view(), name="post-create"),
     path(

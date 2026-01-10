@@ -128,6 +128,7 @@ django_project/
 ├── LICENSE               # License file
 ├── manage.py             # Django management script
 ├── poetry.lock           # Poetry lock file
+├── posts.json            # Sample posts data(if needed for development)
 ├── pyproject.toml        # Poetry project file
 └── README.md             # This file
 ```

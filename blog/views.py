@@ -5,9 +5,10 @@ from typing import cast
 
 # Import django libraries
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.db.models.manager import BaseManager
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -35,12 +36,38 @@ class PostListView(ListView):
         model (Post): Post model.
         template_name (str): Template name(<app>/<model>_<viewtype>.html).
         context_object_name (str): Context object name.
-        ordering (list[str]): Ordering."""
+        ordering (list[str]): Ordering.
+        paginate_by (int): Paginate by.
+    """
 
     model = Post
     template_name = "blog/home.html"
     context_object_name = "posts"
     ordering: list[str] = ["-date_posted"]
+    paginate_by = 5
+
+
+# List user's posts
+class UserPostListView(ListView):
+    """List all posts.
+    Attributes:
+        model (Post): Post model.
+        template_name (str): Template name(<app>/<model>_<viewtype>.html).
+        context_object_name (str): Context object name.
+        ordering (list[str]): Ordering.
+        paginate_by (int): Paginate by.
+    """
+
+    model = Post
+    template_name = "blog/user_posts.html"
+    context_object_name = "posts"
+    paginate_by = 5
+
+    # Get user's posts
+    def get_queryset(self) -> BaseManager[Post]:
+        """Get user's posts."""
+        user: User = get_object_or_404(User, username=self.kwargs.get("username"))
+        return Post.objects.filter(author=user).order_by("-date_posted")
 
 
 # Post detail
