@@ -1,4 +1,6 @@
-{% extends 'blog/base.html' %}
-{% block content %}
-  <h1>About Page</h1>
+<!-- blog/templates/blog/about.html -->
+<!-- About page -->
+{% extends 'blog/base.html' %} 
+{% block content %} 
+  {{ markdown_content|safe }}
 {% endblock content %}

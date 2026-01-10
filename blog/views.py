@@ -4,6 +4,7 @@
 from typing import cast
 
 # Import django libraries
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.db.models.manager import BaseManager
@@ -16,6 +17,9 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+
+# Import third-party libraries
+from markdown import markdown
 
 # Import local modules
 from .models import Post
@@ -147,9 +151,22 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-# About page view function base
 def about(request) -> HttpResponse:
     """About page view."""
+
+    # Construct the path to README.md
+    readme_path = settings.BASE_DIR / "README.md"
+
+    # Read and convert to HTML
+    try:
+        markdown_text = readme_path.read_text(encoding="utf-8")
+        # 'fenced_code' extension supports the triple backticks used in README
+        html_content = markdown(markdown_text, extensions=["fenced_code"])
+    except FileNotFoundError:
+        html_content = "<p>README file not found.</p>"
+
     return render(
-        request=request, template_name="blog/about.html", context={"title": "About"}
+        request=request,
+        template_name="blog/about.html",
+        context={"markdown_content": html_content},
     )

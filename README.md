@@ -79,6 +79,7 @@ django_project/
 │   ├── static/           # Static files (CSS, JS)
 │   |    └── blog/
 │   |        └── main.css
+│   |        └── script.js
 │   |
 │   ├── templates/        # Blog templates
 │   |    └── blog/
