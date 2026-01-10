@@ -36,14 +36,11 @@ urlpatterns = [
         view=auth_views.LoginView.as_view(template_name="users/login.html"),
         name="login",
     ),
-    # path(
-    #     route="logout/",
-    #     view=auth_views.LogoutView.as_view(template_name="users/logout.html"),
-    #     name="logout",
-    # ),
-    # Django version 5 or above only support POST method for logout request.
-    # Use users defined logout_view to handle logout 'GET' method
-    path(route="logout/", view=user_views.logout_view, name="logout"),
+    path(
+        route="logout/",
+        view=auth_views.LogoutView.as_view(template_name="users/logout.html"),
+        name="logout",
+    ),
     path(
         route="password-reset/",
         view=auth_views.PasswordResetView.as_view(
