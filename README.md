@@ -136,6 +136,7 @@ django_project/
 ├── .env                  # Environment variables
 ├── .env.example          # Environment variables example
 ├── .gitignore            # Git ignore file
+├── DATABASE.md           # Database setup instructions
 ├── db.sqlite3            # SQLite database
 ├── LICENSE               # License file
 ├── manage.py             # Django management script
