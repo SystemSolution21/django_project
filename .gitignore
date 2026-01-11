@@ -32,6 +32,7 @@ wheels/
 # Database
 *.db
 *.sqlite3
+datadump.json
 
 # Environment variables
 .env
