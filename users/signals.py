@@ -12,8 +12,8 @@ from .models import Profile
 @receiver(signal=post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs) -> None:
     """Create a profile for each new user."""
-    if created:
-        Profile.objects.create(user=instance)
+    if created and not kwargs.get("raw", False):
+        Profile.objects.get_or_create(user=instance)
 
 
 @receiver(signal=post_save, sender=User)
