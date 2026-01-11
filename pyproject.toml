@@ -13,6 +13,7 @@ crispy-bootstrap4 = "^2024.10"
 pillow = "^12.1.0"
 dotenv = "^0.9.9"
 markdown = "^3.10"
+psycopg2 = "^2.9.11"
 
 
 [build-system]
