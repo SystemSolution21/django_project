@@ -151,6 +151,15 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
+def calendar(request) -> HttpResponse:
+    """Calendar page view."""
+    return render(
+        request=request,
+        template_name="blog/calendar.html",
+        context={"title": "Calendar"},
+    )
+
+
 def about(request) -> HttpResponse:
     """About page view."""
 
