@@ -18,50 +18,50 @@ A Django web application featuring a blog system with modern web development pra
 
 ## Installation
 
-1. **Clone the repository**
+- **1. Clone the repository**
 
-   ```bash
+   ```pwsh
    git clone https://github.com/SystemSolution21/django_project.git
    cd django_project
    ```
 
-2. **Create virtual environment**
+- **2. Create virtual environment**
 
-   ```bash
+   ```pwsh
    python -m venv .venv 
    or poetry shell
    (django_project).venv\Scripts\activate
    ```
 
-3. **Install dependencies**
+- **3. Install dependencies**
 
-   ```bash
+   ```pwsh
    pip install -r requirements.txt
    or poetry sync
    ```
 
-4. **Set up environment variables**
+- **4. Set up environment variables**
 
-   ```bash
+   ```pwsh
    cp .env.example .env
    # Edit .env with your configuration
    ```
 
-5. **Run migrations**
+- **5. Run migrations**
 
-   ```bash
+   ```pwsh
    python manage.py migrate
    ```
 
-6. **Create superuser**
+- **6. Create superuser**
 
-   ```bash
+   ```pwsh
    python manage.py createsuperuser
    ```
 
-7. **Start development server**
+- **7. Start development server**
 
-   ```bash
+   ```pwsh
    python manage.py runserver
    ```
 
@@ -69,7 +69,7 @@ Visit `http://127.0.0.1:8000/` to view the application.
 
 ## Project Structure
 
-```project structure
+```pwsh
 django_project/
 ├── blog/             # Blog application
 │   ├── migrations/       # Database migrations
@@ -85,7 +85,11 @@ django_project/
 │   |    └── blog/
 │   |        ├── about.html
 │   |        ├── base.html
-│   |        └── home.html
+│   |        ├── home.html
+│   |        ├── post_confirm_delete.html
+│   |        ├── post_detail.html
+│   |        ├── post_form.html
+│   |        └── user_posts.html
 │   |
 │   ├── __init__.py       # Application package
 │   ├── admin.py          # Admin interface configuration
@@ -95,10 +99,13 @@ django_project/
 │   ├── urls.py           # Application URLs
 │   └── views.py          # Application views
 |
-├── mysite/          # Main project settings
+├── media/           # User uploaded files
+│   └── profile_pics/     # User profile pictures
+|
+├── mysite/          # Main project
 │   ├── __init__.py       # Application package
 │   ├── asgi.py           # ASGI configuration
-│   ├── settings.py       # Django settings
+│   ├── settings.py       # Application settings
 │   ├── urls.py           # Project URLs
 │   └── wsgi.py           # WSGI configuration
 |
@@ -110,6 +117,10 @@ django_project/
 │   |    └── users/
 │   |        ├── login.html
 │   |        ├── logout.html
+│   |        ├── password_reset_complete.html
+│   |        ├── password_reset_confirm.html
+│   |        ├── password_reset_done.html
+│   |        ├── password_reset.html
 │   |        ├── profile.html
 │   |        └── register.html
 |   |
@@ -142,21 +153,21 @@ django_project/
 
 ## Development
 
-1. **Run tests**
+- **1. Run tests**
 
-   ```bash
+   ```pwsh
    python manage.py test
    ```
 
-2. **Collect static files**
+- **2. Collect static files**
 
-   ```bash
+   ```pwsh
    python manage.py collectstatic
    ```
 
-3. **Create new migrations**
+- **3. Create new migrations**
 
-   ```bash
+   ```pwsh
    python manage.py makemigrations
    ```
 
