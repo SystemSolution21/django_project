@@ -1,0 +1,6 @@
+<!-- blog/templates/blog/announcements.html -->
+<!-- Announcements page -->
+{% extends 'blog/base.html' %} 
+{% block content %} 
+  {{ markdown_content|safe }}
+{% endblock content %}

@@ -34,4 +34,5 @@ urlpatterns: list[URLPattern] = [
     ),
     path(route="calendar/", view=views.calendar, name="blog-calendar"),
     path(route="about/", view=views.about, name="blog-about"),
+    path(route="announcements/", view=views.announcements, name="blog-announcements"),
 ]

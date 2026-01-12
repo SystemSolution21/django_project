@@ -215,3 +215,23 @@ def about(request) -> HttpResponse:
         template_name="blog/about.html",
         context={"markdown_content": html_content},
     )
+
+
+def announcements(request) -> HttpResponse:
+    """Announcements page view."""
+    # Construct the path to DATABASE_OWNERSHIP.md
+    file_path = settings.BASE_DIR / "DATABASE_OWNERSHIP.md"
+
+    # Read and convert to HTML
+    try:
+        markdown_text = file_path.read_text(encoding="utf-8")
+        # 'fenced_code' extension supports the triple backticks used in README
+        html_content = markdown(markdown_text, extensions=["fenced_code"])
+    except FileNotFoundError:
+        html_content = "<p>DATABASE_OWNERSHIP file not found.</p>"
+
+    return render(
+        request=request,
+        template_name="blog/announcements.html",
+        context={"markdown_content": html_content},
+    )
