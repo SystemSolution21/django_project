@@ -7,6 +7,7 @@ from django.urls.resolvers import URLPattern
 # Import local modules
 from . import views
 from .views import (
+    LatestPostListView,
     PostCreateView,
     PostDeleteView,
     PostDetailView,
@@ -19,6 +20,7 @@ from .views import (
 urlpatterns: list[URLPattern] = [
     # path(route="", view=views.home, name="blog-home"), # function base view
     path(route="", view=PostListView.as_view(), name="blog-home"),
+    path(route="latest/", view=LatestPostListView.as_view(), name="post-latest"),
     path(
         route="user/<str:username>/", view=UserPostListView.as_view(), name="user-posts"
     ),

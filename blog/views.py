@@ -7,6 +7,7 @@ from typing import cast
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.db.models import Max
 from django.db.models.manager import BaseManager
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
@@ -49,6 +50,41 @@ class PostListView(ListView):
     context_object_name = "posts"
     ordering: list[str] = ["-date_posted"]
     paginate_by = 5
+
+
+# List latest posts
+class LatestPostListView(ListView):
+    """List latest posts.
+    Attributes:
+        model (Post): Post model.
+        template_name (str): Template name(<app>/<model>_<viewtype>.html).
+        context_object_name (str): Context object name.
+        ordering (list[str]): Ordering.
+        paginate_by (int): Paginate by.
+    """
+
+    model = Post
+    template_name = "blog/latest_posts.html"
+    context_object_name = "posts"
+    ordering: list[str] = ["-date_posted"]
+    paginate_by = 5
+
+    # Get latest posts
+    def get_queryset(self) -> BaseManager[Post]:
+        """Get latest posts."""
+
+        # Get the latest post ID for each author
+        latest_post_ids = (
+            Post.objects.values("author")
+            .annotate(latest_date=Max("date_posted"))
+            .values_list("author", "latest_date")
+        )
+
+        # Get the actual posts and order by date_posted desc
+        return Post.objects.filter(
+            author__in=[item[0] for item in latest_post_ids],
+            date_posted__in=[item[1] for item in latest_post_ids],
+        ).order_by("-date_posted")
 
 
 # List user's posts

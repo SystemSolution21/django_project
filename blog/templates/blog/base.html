@@ -89,12 +89,8 @@
               You can put any information here you'd like.
             </p>
             <ul class="list-group">
-              <li class="list-group-item list-group-item-light">
-                Latest Posts
-              </li>
-              <li class="list-group-item list-group-item-light">
-                Announcements
-              </li>
+              <li class="list-group-item list-group-item-light"><a href="{% url 'post-latest' %}">Latest Posts</a></li>
+              <li class="list-group-item list-group-item-light">Announcements</li>
               <li class="list-group-item list-group-item-light"><a href="{% url 'blog-calendar' %}">Calendars</a></li>
               <li class="list-group-item list-group-item-light">etc</li>
             </ul>
