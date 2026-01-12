@@ -36,7 +36,7 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Blog</a>
+          <a class="navbar-brand mr-4" href="{% url 'blog-index' %}">🤖</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -50,6 +50,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link {% if request.resolver_match.url_name == 'blog-index' %}active{% endif %}" href="{% url 'blog-index' %}">Blog</a>
               <a class="nav-item nav-link {% if request.resolver_match.url_name == 'blog-home' %}active{% endif %}" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link {% if request.resolver_match.url_name == 'blog-about' %}active{% endif %}" href="{% url 'blog-about' %}">About</a>
             </div>
@@ -89,9 +90,15 @@
               You can put any information here you'd like.
             </p>
             <ul class="list-group">
-              <li class="list-group-item list-group-item-light"><a href="{% url 'post-latest' %}">Latest Posts</a></li>
-              <li class="list-group-item list-group-item-light"><a href="{% url 'blog-announcements' %}">Announcements</a></li>
-              <li class="list-group-item list-group-item-light"><a href="{% url 'blog-calendar' %}">Calendars</a></li>
+              <li class="list-group-item {% if request.resolver_match.url_name == 'post-latest' %}active{% else %}list-group-item-light{% endif %}">
+                <a class="{% if request.resolver_match.url_name == 'post-latest' %}text-white{% endif %}" href="{% url 'post-latest' %}">Latest Posts</a>
+              </li>
+              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-announcements' %}active{% else %}list-group-item-light{% endif %}">
+                <a class="{% if request.resolver_match.url_name == 'blog-announcements' %}text-white{% endif %}" href="{% url 'blog-announcements' %}">Announcements</a>
+              </li>
+              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-calendar' %}active{% else %}list-group-item-light{% endif %}">
+                <a class="{% if request.resolver_match.url_name == 'blog-calendar' %}text-white{% endif %}" href="{% url 'blog-calendar' %}">Calendars</a>
+              </li>
               <li class="list-group-item list-group-item-light">etc</li>
             </ul>
           </div>

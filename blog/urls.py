@@ -19,7 +19,7 @@ from .views import (
 # Define urlpatterns
 urlpatterns: list[URLPattern] = [
     # path(route="", view=views.home, name="blog-home"), # function base view
-    path(route="", view=PostListView.as_view(), name="blog-home"),
+    path(route="", view=PostListView.as_view(), name="blog-index"),
     path(route="latest/", view=LatestPostListView.as_view(), name="post-latest"),
     path(
         route="user/<str:username>/", view=UserPostListView.as_view(), name="user-posts"
@@ -35,4 +35,5 @@ urlpatterns: list[URLPattern] = [
     path(route="calendar/", view=views.calendar, name="blog-calendar"),
     path(route="about/", view=views.about, name="blog-about"),
     path(route="announcements/", view=views.announcements, name="blog-announcements"),
+    path(route="home/", view=views.home, name="blog-home"),
 ]

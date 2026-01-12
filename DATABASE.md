@@ -118,3 +118,29 @@ python manage.py runserver
 ```
 
 Visit `http://127.0.0.1:8000/` to view the application.
+
+## Django Commands
+
+- Use `pgAdmin` to manage PostgreSQL databases
+- Use `psql` to connect to PostgreSQL databases
+- Use `python manage.py shell` to interact with Django models
+- Use `python manage.py test` to run tests
+- Use `python manage.py collectstatic` to collect static files
+- Use `python manage.py makemigrations` to create new migrations
+- Use `python manage.py migrate` to apply migrations
+- Use `python manage.py createsuperuser` to create a superuser
+- Use `python manage.py runserver` to start the development server
+- Use `python manage.py loaddata` to load data
+- Use `python manage.py dumpdata` to export data
+
+## Sql Queries
+
+```sql
+select *
+from (
+SELECT DISTINCT ON (author_id) *
+FROM blog_post
+ORDER BY author_id, date_posted DESC
+) as latest
+order by date_posted desc;
+```

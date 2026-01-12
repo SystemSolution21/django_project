@@ -26,14 +26,6 @@ from markdown import markdown
 from .models import Post
 
 
-# Home page view function base (Only for testing)
-def home(request) -> HttpResponse:
-    """Home page view."""
-    context: dict[str, BaseManager[Post]] = {"posts": Post.objects.all()}
-
-    return render(request=request, template_name="blog/home.html", context=context)
-
-
 # List all posts
 class PostListView(ListView):
     """List all posts.
@@ -46,7 +38,7 @@ class PostListView(ListView):
     """
 
     model = Post
-    template_name = "blog/home.html"
+    template_name = "blog/index.html"
     context_object_name = "posts"
     ordering: list[str] = ["-date_posted"]
     paginate_by = 5
@@ -199,16 +191,16 @@ def calendar(request) -> HttpResponse:
 def about(request) -> HttpResponse:
     """About page view."""
 
-    # Construct the path to README.md
-    readme_path = settings.BASE_DIR / "README.md"
+    # Construct the path to DATABASE.md
+    readme_path = settings.BASE_DIR / "DATABASE.md"
 
     # Read and convert to HTML
     try:
         markdown_text = readme_path.read_text(encoding="utf-8")
-        # 'fenced_code' extension supports the triple backticks used in README
+        # 'fenced_code' extension supports the triple backticks used in markdown
         html_content = markdown(markdown_text, extensions=["fenced_code"])
     except FileNotFoundError:
-        html_content = "<p>README file not found.</p>"
+        html_content = "<p>DATABASE.md file not found.</p>"
 
     return render(
         request=request,
@@ -225,13 +217,34 @@ def announcements(request) -> HttpResponse:
     # Read and convert to HTML
     try:
         markdown_text = file_path.read_text(encoding="utf-8")
-        # 'fenced_code' extension supports the triple backticks used in README
+        # 'fenced_code' extension supports the triple backticks used in markdown
         html_content = markdown(markdown_text, extensions=["fenced_code"])
     except FileNotFoundError:
-        html_content = "<p>DATABASE_OWNERSHIP file not found.</p>"
+        html_content = "<p>DATABASE_OWNERSHIP.md file not found.</p>"
 
     return render(
         request=request,
         template_name="blog/announcements.html",
+        context={"markdown_content": html_content},
+    )
+
+
+# Home page
+def home(request) -> HttpResponse:
+    """Home page view."""
+    # Construct the path to README.md
+    file_path = settings.BASE_DIR / "README.md"
+
+    # Read and convert to HTML
+    try:
+        markdown_text = file_path.read_text(encoding="utf-8")
+        # 'fenced_code' extension supports the triple backticks used in markdown
+        html_content = markdown(markdown_text, extensions=["fenced_code"])
+    except FileNotFoundError:
+        html_content = "<p>README.md file not found.</p>"
+
+    return render(
+        request=request,
+        template_name="blog/home.html",
         context={"markdown_content": html_content},
     )

@@ -8,7 +8,7 @@ A Django web application featuring a blog system with modern web development pra
 - User authentication and authorization
 - Admin interface for content management
 - Responsive design
-- SQLite database (development)
+- PostgreSQL database
 
 ## Prerequisites
 
