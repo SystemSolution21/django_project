@@ -63,6 +63,7 @@ MIDDLEWARE: list[str] = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 # URL configuration
@@ -146,7 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_ROOT: Path = (
-    BASE_DIR / "staticfiles"
+    BASE_DIR / "productionfiles"
 )  # All necessary static files are collected (python manage.py collectstatic) for deployment.
 
 STATIC_URL = "static/"  # Static files for each root app
