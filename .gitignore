@@ -55,9 +55,19 @@ datadump.json
 ehthumbs.db
 Thumbs.db
 
-# Static files (if collected)
-staticfiles/
-static_root/
+# Ignore everything in staticfiles
+django_project/staticfiles/*
+
+# Allow blog folder and its files
+!django_project/staticfiles/blog/
+!django_project/staticfiles/blog/**
+
+# Allow global.css
+!django_project/staticfiles/global.css
+
+# Ignore admin folder explicitly
+django_project/staticfiles/admin/
+
 
 # Media files (user uploads)
 media/
