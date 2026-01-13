@@ -19,27 +19,29 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR: Path = Path(__file__).resolve().parent.parent
 
 # Load environment variables from .env file
-load_dotenv(BASE_DIR / ".env")
+load_dotenv(dotenv_path=BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", "your-secret-key")
+SECRET_KEY: str = os.environ.get("SECRET_KEY", default="your-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get("DEBUG", True))
+DEBUG = True
+# DEBUG: bool = bool(os.environ.get("DEBUG", default="False"))
+
 
 # SECURITY WARNING: define the correct hosts in production!
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS: list[str] = os.environ.get("ALLOWED_HOSTS", default="").split(sep=",")
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS: list[str] = [
     "blog.apps.BlogConfig",
     "users.apps.UsersConfig",
     "crispy_forms",
@@ -53,7 +55,7 @@ INSTALLED_APPS = [
 ]
 
 # Middleware
-MIDDLEWARE = [
+MIDDLEWARE: list[str] = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -100,11 +102,11 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST", "localhost"),
-        "PORT": os.getenv("DB_PORT", "5432"),
+        "NAME": os.getenv(key="DB_NAME"),
+        "USER": os.getenv(key="DB_USER"),
+        "PASSWORD": os.getenv(key="DB_PASSWORD"),
+        "HOST": os.getenv(key="DB_HOST", default="localhost"),
+        "PORT": os.getenv(key="DB_PORT", default="5432"),
     }
 }
 
@@ -112,7 +114,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+AUTH_PASSWORD_VALIDATORS: list[dict[str, str]] = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
@@ -143,8 +145,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_ROOT: Path = (
+    BASE_DIR / "staticfiles"
+)  # All necessary static files are collected (python manage.py collectstatic) for deployment.
 
+STATIC_URL = "static/"  # Static files for each root app
+
+STATICFILES_DIRS: list[Path] = [
+    BASE_DIR / "globalstaticfiles"
+]  # Globally available static files for all apps in the project.
+
+# Media files (user uploaded files)
 MEDIA_ROOT: Path = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
@@ -162,10 +173,10 @@ LOGIN_REDIRECT_URL = "blog-home"
 LOGIN_URL = "login"
 
 # Email configuration for password reset
-EMAIL_BACKEND = os.environ.get("EMAIL_BACKEND")
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_PORT = os.environ.get("EMAIL_PORT")
-EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
-EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASS")
-DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_USER")
+EMAIL_BACKEND: str | None = os.environ.get("EMAIL_BACKEND")
+EMAIL_HOST: str | None = os.environ.get("EMAIL_HOST")
+EMAIL_PORT: str | None = os.environ.get("EMAIL_PORT")
+EMAIL_USE_TLS: str | None = os.environ.get("EMAIL_USE_TLS")
+EMAIL_HOST_USER: str | None = os.environ.get("EMAIL_USER")
+EMAIL_HOST_PASSWORD: str | None = os.environ.get("EMAIL_PASS")
+DEFAULT_FROM_EMAIL: str | None = os.environ.get("EMAIL_USER")

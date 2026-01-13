@@ -36,7 +36,9 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'blog-index' %}">🤖</a>
+           <a class="navbar-brand mr-4" href="{% url 'blog-index' %}">
+            <img src="{% static 'blog/blog.svg' %}" alt="Blog" height="30" />
+          </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -58,6 +60,9 @@
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                  <a class="nav-item nav-link" href="{% url 'admin:index' %}">Admin</a>
+                {% endif %}
                 <a class="nav-item nav-link {% if request.resolver_match.url_name == 'post-create' %}active{% endif %}" href="{% url 'post-create' %}">NewPost</a>
                 <a class="nav-item nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}" href="{% url 'profile' %}">Profile</a>
                 <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">

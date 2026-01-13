@@ -28,7 +28,8 @@ from users import views as user_views
 
 # Define urlpatterns
 urlpatterns = [
-    path(route="admin/", view=admin.site.urls),
+    # path(route="admin/", view=admin.site.urls),
+    path("secure-admin-portal/", view=admin.site.urls),
     path(route="register/", view=user_views.register, name="register"),
     path(route="profile/", view=user_views.profile, name="profile"),
     path(
