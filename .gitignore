@@ -5,7 +5,10 @@
 *.log
 local_settings.py
 db.sqlite3
+# Media files (user uploads)
 media/
+# Production files
+productionfiles/
 
 # Python
 __pycache__/
@@ -54,9 +57,6 @@ datadump.json
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Media files (user uploads)
-media/
 
 # Coverage reports
 htmlcov/

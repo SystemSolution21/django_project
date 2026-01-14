@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
+from django.views.static import serve
 
 # Import local modules
 from users import views as user_views
@@ -73,5 +74,12 @@ urlpatterns = [
     path(route="", view=include(arg="blog.urls")),
 ]
 
+#  This manual serving of media files via serve is suitable for local testing with DEBUG=False.
+# In a real production environment (like AWS, Heroku, or a VPS),
+# it would typically configure web server (Nginx/Apache) or a storage service (like AWS S3) to handle these files directly.
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += [
+        path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
+    ]
