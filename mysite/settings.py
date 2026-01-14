@@ -31,13 +31,16 @@ load_dotenv(dotenv_path=BASE_DIR / ".env")
 SECRET_KEY: str = os.environ.get("SECRET_KEY", default="your-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG: bool = bool(os.environ.get("DEBUG", default="False"))
+# DEBUG = False
+DEBUG: bool = os.environ.get("DEBUG", default="False") == "True"
 
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS: list[str] = os.environ.get("ALLOWED_HOSTS", default="").split(sep=",")
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS: list[str] = [
+    host.strip(" \"[]'")
+    for host in os.environ.get("ALLOWED_HOSTS", default="*").split(sep=",")
+]
 
 # Application definition
 

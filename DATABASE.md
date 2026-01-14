@@ -33,20 +33,20 @@ DB_PORT=5432
 
 ## Update settings.py
 
-   ```python
-   DATABASES = {
-       "default": {
-           "ENGINE": "django.db.backends.postgresql",
-           "NAME": "django_mysite_db",
-           "USER": "django_mysite_user",
-           "PASSWORD": "django_mysite_password",
-           "HOST": "localhost",
-           "PORT": "5432",
-       }
-   }
+```python
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "django_mysite_db",
+        "USER": "django_mysite_user",
+        "PASSWORD": "django_mysite_password",
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
+}
 
-   ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-   ```
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+```
 
 ## Run Migrations
 
@@ -89,8 +89,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 ```
 
 ### 3. Run migrations to create schema
