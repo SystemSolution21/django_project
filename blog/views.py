@@ -4,8 +4,10 @@
 import logging
 from typing import cast
 
-# Import django libraries
 from django.conf import settings
+
+# Import django libraries
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.db.models import Max
@@ -279,4 +281,10 @@ def landing_page(request) -> HttpResponse:
     """
     if request.user.is_authenticated:
         return PostListView.as_view()(request)
+
+    messages.info(
+        request=request,
+        message="Please login to view the blog. Register if you don't have an account.",
+    )
+
     return home(request)

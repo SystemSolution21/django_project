@@ -10,7 +10,7 @@ psql -U postgres
 
 ```psql
 CREATE DATABASE django_mysite_db;
-CREATE ROLE django_mysite_user WITH LOGIN PASSWORD 'django_mysite_password';
+CREATE ROLE django_mysite_user WITH LOGIN PASSWORD 'your_secret_password';
 ALTER DATABASE django_mysite_db OWNER TO django_mysite_user;
 GRANT ALL PRIVILEGES ON DATABASE django_mysite_db TO django_mysite_user;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO django_mysite_user;
@@ -26,7 +26,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON FUNCTIONS TO d
 ```.env
 DB_NAME=django_mysite_db
 DB_USER=django_mysite_user
-DB_PASSWORD=django_mysite_password
+DB_PASSWORD=your_secret_password
 DB_HOST=localhost
 DB_PORT=5432
 ```
@@ -39,7 +39,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "django_mysite_db",
         "USER": "django_mysite_user",
-        "PASSWORD": "django_mysite_password",
+        "PASSWORD": "your_secret_password",
         "HOST": "localhost",
         "PORT": "5432",
     }
@@ -84,7 +84,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "django_mysite_db",
         "USER": "django_mysite_user",
-        "PASSWORD": "django_mysite_password",
+        "PASSWORD": "your_secret_password",
         "HOST": "localhost",
         "PORT": "5432",
     }
