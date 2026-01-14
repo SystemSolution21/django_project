@@ -109,6 +109,11 @@ django_project/
 │   ├── urls.py           # Project URLs
 │   └── wsgi.py           # WSGI configuration
 |
+├── productionfiles/   # Production files
+|   ├── admin/            # Admin static files
+|   ├── blog/            # Blog static files
+|   └── staticfiles.json  # Static files manifest
+|
 ├── users/             # User authentication application
 │   ├── migrations/       # Database migrations
 │   |    └── __init__.py   # Initial migration
