@@ -1,6 +1,7 @@
 # blog/views.py
 
 # Import built-in libraries
+import logging
 from typing import cast
 
 # Import django libraries
@@ -24,6 +25,9 @@ from markdown import markdown
 
 # Import local modules
 from .models import Post
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 
 # List all posts
@@ -126,7 +130,12 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form) -> HttpResponse:
         """Validate form."""
         form.instance.author = self.request.user
-        return super().form_valid(form=form)
+        response = super().form_valid(form=form)
+        post = cast(Post, getattr(self, "object"))
+        logger.info(
+            f"User '{self.request.user.username}' created post titled '{post.title}' (ID: {post.pk})."
+        )
+        return response
 
 
 # Update post
@@ -144,7 +153,12 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form) -> HttpResponse:
         """Validate form."""
         form.instance.author = self.request.user
-        return super().form_valid(form=form)
+        response = super().form_valid(form=form)
+        post = cast(Post, getattr(self, "object"))
+        logger.info(
+            f"User '{self.request.user.username}' updated post titled '{post.title}' (ID: {post.pk})."
+        )
+        return response
 
     # Check current user as author of post
     def test_func(self) -> bool:
@@ -167,6 +181,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     model = Post
     success_url = "/"
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        post = cast(Post, self.object)
+        logger.info(
+            f"User '{request.user.username}' deleted post titled '{post.title}' (ID: {post.pk})."
+        )
+        return super().delete(request, *args, **kwargs)
 
     # Check current user as author of post
     def test_func(self) -> bool:
