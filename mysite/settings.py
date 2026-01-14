@@ -156,7 +156,7 @@ STATIC_ROOT: Path = (
 STATIC_URL = "static/"  # Static files for each root app
 
 STATICFILES_DIRS: list[Path] = [
-    BASE_DIR / "globalstaticfiles"
+    BASE_DIR / "projectstaticfiles"
 ]  # Globally available static files for all apps in the project.
 
 # Media files (user uploaded files)
