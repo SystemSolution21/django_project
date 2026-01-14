@@ -115,6 +115,8 @@ django_project/
 |   ├── blog/            # Blog static files
 |   └── staticfiles.json  # Static files manifest
 |
+├── projectstaticfiles/  # Globally available static files
+|
 ├── users/             # User authentication application
 │   ├── migrations/       # Database migrations
 │   |    └── __init__.py   # Initial migration
