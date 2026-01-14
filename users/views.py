@@ -1,5 +1,8 @@
 # users/views.py
 
+# Import built-in libraries
+import logging
+
 # Import django libraries
 from django.contrib import messages
 from django.contrib.auth import logout  # To handle GET method error
@@ -9,6 +12,9 @@ from django.shortcuts import redirect, render
 
 # Import local modules
 from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 
 # users registration
@@ -57,6 +63,9 @@ def profile(request) -> HttpResponse:
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+            logger.info(
+                f"User '{request.user.username}' updated their profile successfully."
+            )
             messages.success(request=request, message="Your account has been updated!")
             return redirect(to="profile")
     else:
