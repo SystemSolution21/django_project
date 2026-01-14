@@ -25,6 +25,7 @@ from django.urls import include, path
 from django.views.static import serve
 
 # Import local modules
+from blog import views as blog_views
 from users import views as user_views
 
 # Define urlpatterns
@@ -71,6 +72,7 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+    path(route="", view=blog_views.landing_page, name="landing-page"),
     path(route="", view=include(arg="blog.urls")),
 ]
 

@@ -12,22 +12,23 @@ A Django web application featuring a blog system with modern web development pra
 
 ## Prerequisites
 
-- Python 3.8+
-- pip (Python package manager)
+- Python 3.12+
+- PostgreSQL 15+
+- poetry (Python package manager)
 - Git
 
 ## Installation
 
 - **1. Clone the repository**
 
-   ```pwsh
+   ```
    git clone https://github.com/SystemSolution21/django_project.git
    cd django_project
    ```
 
 - **2. Create virtual environment**
 
-   ```pwsh
+   ```
    python -m venv .venv 
    or poetry shell
    (django_project).venv\Scripts\activate
@@ -35,33 +36,33 @@ A Django web application featuring a blog system with modern web development pra
 
 - **3. Install dependencies**
 
-   ```pwsh
+   ```
    pip install -r requirements.txt
    or poetry sync
    ```
 
 - **4. Set up environment variables**
 
-   ```pwsh
+   ```
    cp .env.example .env
    # Edit .env with your configuration
    ```
 
 - **5. Run migrations**
 
-   ```pwsh
+   ```
    python manage.py migrate
    ```
 
 - **6. Create superuser**
 
-   ```pwsh
+   ```
    python manage.py createsuperuser
    ```
 
 - **7. Start development server**
 
-   ```pwsh
+   ```
    python manage.py runserver
    ```
 
@@ -69,7 +70,7 @@ Visit `http://127.0.0.1:8000/` to view the application.
 
 ## Project Structure
 
-```pwsh
+```bash
 django_project/
 ├── blog/             # Blog application
 │   ├── migrations/       # Database migrations
@@ -142,7 +143,6 @@ django_project/
 ├── .env.example          # Environment variables example
 ├── .gitignore            # Git ignore file
 ├── DATABASE.md           # Database setup instructions
-├── db.sqlite3            # SQLite database
 ├── LICENSE               # License file
 ├── manage.py             # Django management script
 ├── poetry.lock           # Poetry lock file
@@ -153,7 +153,8 @@ django_project/
 
 ## Usage
 
-- **Admin Panel**: Visit `/admin/` to manage content
+- **Admin Panel**: Login with superuser credentials.
+   Admin button appears in the navbar after login.
 - **Blog**: Main blog functionality at `/blog/`
 - **API**: RESTful API endpoints (if implemented)
 
@@ -161,19 +162,19 @@ django_project/
 
 - **1. Run tests**
 
-   ```pwsh
+   ```
    python manage.py test
    ```
 
 - **2. Collect static files**
 
-   ```pwsh
+   ```
    python manage.py collectstatic
    ```
 
 - **3. Create new migrations**
 
-   ```pwsh
+   ```
    python manage.py makemigrations
    ```
 

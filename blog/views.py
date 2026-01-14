@@ -270,3 +270,13 @@ def home(request) -> HttpResponse:
         template_name="blog/home.html",
         context={"markdown_content": html_content},
     )
+
+
+def landing_page(request) -> HttpResponse:
+    """Dispatch view for the landing page.
+    - Authenticated users -> PostListView (Blog Index)
+    - Guests -> Home View (README)
+    """
+    if request.user.is_authenticated:
+        return PostListView.as_view()(request)
+    return home(request)
