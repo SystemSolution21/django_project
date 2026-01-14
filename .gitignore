@@ -56,18 +56,17 @@ ehthumbs.db
 Thumbs.db
 
 # Ignore everything in staticfiles
-django_project/staticfiles/*
+django_project/productionfiles/*
 
 # Allow blog folder and its files
-!django_project/staticfiles/blog/
-!django_project/staticfiles/blog/**
+!django_project/productionfiles/blog/
+!django_project/productionfiles/blog/**
 
 # Allow global.css
-!django_project/staticfiles/global.css
+!django_project/productionfiles/global.css
 
 # Ignore admin folder explicitly
-django_project/staticfiles/admin/
-
+django_project/productionfiles/admin
 
 # Media files (user uploads)
 media/
