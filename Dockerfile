@@ -9,6 +9,9 @@ RUN pip install poetry
 # Copy poetry configuration files
 COPY pyproject.toml poetry.lock ./
 
+# Install poetry-plugin-export
+RUN pip install poetry-plugin-export
+
 # Export dependencies to requirements.txt
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
@@ -21,7 +24,7 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-# Install system dependencies required for PostgreSQL (psycopg2)
+# Install system dependencies required for PostgreSQL (psycopg2-binary)
 RUN apt-get update \
     && apt-get install -y --no-install-recommends libpq-dev gcc \
     && rm -rf /var/lib/apt/lists/*
@@ -31,6 +34,8 @@ COPY --from=builder /app/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+# Ensure gunicorn is installed (in case it's not in pyproject.toml)
+RUN pip install gunicorn
 
 # Copy application code
 COPY . .
@@ -39,7 +44,7 @@ COPY . .
 RUN addgroup --system app && adduser --system --group app
 
 # Create directories for static/media and set permissions
-RUN mkdir -p productionfiles media && chown -R app:app productionfiles media
+RUN mkdir -p productionfiles media && chown -R app:app /app
 
 # Switch to non-root user
 USER app

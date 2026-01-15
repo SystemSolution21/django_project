@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    image: django_mysite_image:v1.0.0
+    image: django_mysite_image:v0.1.0
     # Wait for DB, run migrations, then start Gunicorn
     command: sh -c "python manage.py migrate && gunicorn mysite.wsgi:application --bind 0.0.0.0:8000"
     volumes:
@@ -11,10 +11,13 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
+      - SQL_HOST=db
+      - SQL_PORT=5432
 
   db:
     image: postgres:17-alpine
