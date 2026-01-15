@@ -68,6 +68,20 @@ A Django web application featuring a blog system with modern web development pra
 
 Visit `http://127.0.0.1:8000/` to view the application.
 
+## Docker Deployment
+
+You can run the application and database using Docker Compose.
+
+1. **Ensure `.env` is configured** with your database credentials.
+
+2. **Build and run the containers:**
+
+   ```bash
+   docker-compose up --build
+   ```
+
+The application will be available at `http://127.0.0.1:8000/`. The database data will be persisted in a Docker volume.
+
 ## Project Structure
 
 ```bash

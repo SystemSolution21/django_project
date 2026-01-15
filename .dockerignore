@@ -1,0 +1,12 @@
+__pycache__
+*.py[cod]
+*$py.class
+.git
+.gitignore
+.env
+.venv
+venv/
+media/
+productionfiles/
+Dockerfile
+docker-compose.yml

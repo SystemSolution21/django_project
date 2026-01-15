@@ -2,7 +2,7 @@
 name = "django-project"
 version = "0.1.0"
 description = "Django blog web application"
-authors = ["Your Name <you@example.com>"]
+authors = ["SystemSolution21 <systemsolution21@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -15,6 +15,7 @@ dotenv = "^0.9.9"
 markdown = "^3.10"
 psycopg2 = "^2.9.11"
 whitenoise = "^6.11.0"
+gunicorn = "^23.0.0"
 
 
 [build-system]
