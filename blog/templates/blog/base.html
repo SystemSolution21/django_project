@@ -71,7 +71,7 @@
                 <a id="logout-link" class="nav-item nav-link" href="#">Logout</a>
               {% else %}
                 <a class="nav-item nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}" href="{% url 'login' %}">Login</a>
-                <a class="nav-item nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}" href="{% url 'register' %}">Register</a>
+                <a class="nav-item nav-link {% if request.resolver_match.url_name == 'register' %}active{% endif %}" href="{% url 'register' %}">SignUp</a>
               {% endif %}
             </div>
           </div>
@@ -104,7 +104,9 @@
               <li class="list-group-item {% if request.resolver_match.url_name == 'blog-calendar' %}active{% else %}list-group-item-light{% endif %}">
                 <a class="{% if request.resolver_match.url_name == 'blog-calendar' %}text-white{% endif %}" href="{% url 'blog-calendar' %}">Calendars</a>
               </li>
-              <li class="list-group-item list-group-item-light">etc</li>
+              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-resources' %}active{% else %}list-group-item-light{% endif %}">
+                <a class="{% if request.resolver_match.url_name == 'blog-resources' %}text-white{% endif %}" href="{% url 'blog-resources' %}">Resources</a>
+              </li>
             </ul>
           </div>
         </div>

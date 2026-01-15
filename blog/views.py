@@ -203,56 +203,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-def calendar(request) -> HttpResponse:
-    """Calendar page view."""
-    return render(
-        request=request,
-        template_name="blog/calendar.html",
-        context={"title": "Calendar"},
-    )
-
-
-def about(request) -> HttpResponse:
-    """About page view."""
-
-    # Construct the path to DATABASE.md
-    readme_path = settings.BASE_DIR / "DATABASE.md"
-
-    # Read and convert to HTML
-    try:
-        markdown_text = readme_path.read_text(encoding="utf-8")
-        # 'fenced_code' extension supports the triple backticks used in markdown
-        html_content = markdown(markdown_text, extensions=["fenced_code"])
-    except FileNotFoundError:
-        html_content = "<p>DATABASE.md file not found.</p>"
-
-    return render(
-        request=request,
-        template_name="blog/about.html",
-        context={"markdown_content": html_content},
-    )
-
-
-def announcements(request) -> HttpResponse:
-    """Announcements page view."""
-    # Construct the path to DATABASE_OWNERSHIP.md
-    file_path = settings.BASE_DIR / "DATABASE_OWNERSHIP.md"
-
-    # Read and convert to HTML
-    try:
-        markdown_text = file_path.read_text(encoding="utf-8")
-        # 'fenced_code' extension supports the triple backticks used in markdown
-        html_content = markdown(markdown_text, extensions=["fenced_code"])
-    except FileNotFoundError:
-        html_content = "<p>DATABASE_OWNERSHIP.md file not found.</p>"
-
-    return render(
-        request=request,
-        template_name="blog/announcements.html",
-        context={"markdown_content": html_content},
-    )
-
-
 # Home page
 def home(request) -> HttpResponse:
     """Home page view."""
@@ -274,6 +224,7 @@ def home(request) -> HttpResponse:
     )
 
 
+# Landing page for authenticated users
 def landing_page(request) -> HttpResponse:
     """Dispatch view for the landing page.
     - Authenticated users -> PostListView (Blog Index)
@@ -284,7 +235,81 @@ def landing_page(request) -> HttpResponse:
 
     messages.info(
         request=request,
-        message="Please login to view the blog. Register if you don't have an account.",
+        message="Please login to view the blog. SignUp if you don't have an account.",
     )
 
     return home(request)
+
+
+# About page
+def about(request) -> HttpResponse:
+    """About page view."""
+
+    # Construct the path to DATABASE.md
+    readme_path = settings.BASE_DIR / "DATABASE.md"
+
+    # Read and convert to HTML
+    try:
+        markdown_text = readme_path.read_text(encoding="utf-8")
+        # 'fenced_code' extension supports the triple backticks used in markdown
+        html_content = markdown(markdown_text, extensions=["fenced_code"])
+    except FileNotFoundError:
+        html_content = "<p>DATABASE.md file not found.</p>"
+
+    return render(
+        request=request,
+        template_name="blog/about.html",
+        context={"markdown_content": html_content},
+    )
+
+
+# Calendar page
+def calendar(request) -> HttpResponse:
+    """Calendar page view."""
+    return render(
+        request=request,
+        template_name="blog/calendar.html",
+        context={"title": "Calendar"},
+    )
+
+
+# Announcements page
+def announcements(request) -> HttpResponse:
+    """Announcements page view."""
+    # Construct the path to DATABASE_OWNERSHIP.md
+    file_path = settings.BASE_DIR / "DATABASE_OWNERSHIP.md"
+
+    # Read and convert to HTML
+    try:
+        markdown_text = file_path.read_text(encoding="utf-8")
+        # 'fenced_code' extension supports the triple backticks used in markdown
+        html_content = markdown(markdown_text, extensions=["fenced_code"])
+    except FileNotFoundError:
+        html_content = "<p>DATABASE_OWNERSHIP.md file not found.</p>"
+
+    return render(
+        request=request,
+        template_name="blog/announcements.html",
+        context={"markdown_content": html_content},
+    )
+
+
+# Resources page
+def resources(request) -> HttpResponse:
+    """Resources page view."""
+    # Construct the path to LINUX_COMMANDS.md
+    file_path = settings.BASE_DIR / "LINUX_COMMANDS.md"
+
+    # Read and convert to HTML
+    try:
+        markdown_text = file_path.read_text(encoding="utf-8")
+        # 'fenced_code' extension supports the triple backticks used in markdown
+        html_content = markdown(markdown_text, extensions=["fenced_code"])
+    except FileNotFoundError:
+        html_content = "<p>LINUX_COMMANDS.md file not found.</p>"
+
+    return render(
+        request=request,
+        template_name="blog/resources.html",
+        context={"markdown_content": html_content},
+    )

@@ -32,8 +32,9 @@ urlpatterns: list[URLPattern] = [
     path(
         route="post/<int:pk>/delete/", view=PostDeleteView.as_view(), name="post-delete"
     ),
-    path(route="calendar/", view=views.calendar, name="blog-calendar"),
-    path(route="about/", view=views.about, name="blog-about"),
-    path(route="announcements/", view=views.announcements, name="blog-announcements"),
     path(route="home/", view=views.home, name="blog-home"),
+    path(route="about/", view=views.about, name="blog-about"),
+    path(route="calendar/", view=views.calendar, name="blog-calendar"),
+    path(route="announcements/", view=views.announcements, name="blog-announcements"),
+    path(route="resources/", view=views.resources, name="blog-resources"),
 ]
