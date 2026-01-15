@@ -67,3 +67,7 @@ coverage.xml
 # Testing
 .pytest_cache/
 .tox/
+
+# Development
+datadump.json
+development.txt

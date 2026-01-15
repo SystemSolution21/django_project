@@ -21,50 +21,43 @@ A Django web application featuring a blog system with modern web development pra
 
 - **1. Clone the repository**
 
-   ```
-   git clone https://github.com/SystemSolution21/django_project.git
+   `git clone https://github.com/SystemSolution21/django_project.git
    cd django_project
-   ```
+   `
 
 - **2. Create virtual environment**
 
-   ```
-   python -m venv .venv 
+   `python -m venv .venv
    or poetry shell
    (django_project).venv\Scripts\activate
-   ```
+   `
 
 - **3. Install dependencies**
 
-   ```
-   pip install -r requirements.txt
+   `pip install -r requirements.txt
    or poetry sync
-   ```
+   `
 
 - **4. Set up environment variables**
 
-   ```
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
+   `cp .env.example .env
+   #Edit .env with your configuration
+   `
 
 - **5. Run migrations**
 
-   ```
-   python manage.py migrate
-   ```
+   `python manage.py migrate
+   `
 
 - **6. Create superuser**
 
-   ```
-   python manage.py createsuperuser
-   ```
+   `python manage.py createsuperuser
+   `
 
 - **7. Start development server**
 
-   ```
-   python manage.py runserver
-   ```
+   `python manage.py runserver
+   `
 
 Visit `http://127.0.0.1:8000/` to view the application.
 
@@ -76,9 +69,8 @@ You can run the application and database using Docker Compose.
 
 2. **Build and run the containers:**
 
-   ```bash
-   docker-compose up --build
-   ```
+      `docker-compose up --build
+      `
 
 The application will be available at `http://127.0.0.1:8000/`. The database data will be persisted in a Docker volume.
 
@@ -97,13 +89,19 @@ django_project/
 │   |        └── script.js
 │   |
 │   ├── templates/        # Blog templates
+│   |    ├── 404.html     # 404 page
 │   |    └── blog/
 │   |        ├── about.html
+│   |        ├── announcements.html
 │   |        ├── base.html
+│   |        ├── calendar.html
 │   |        ├── home.html
+│   |        ├── index.html
+│   |        ├── latest_posts.html
 │   |        ├── post_confirm_delete.html
 │   |        ├── post_detail.html
 │   |        ├── post_form.html
+│   |        ├── resources.html
 │   |        └── user_posts.html
 │   |
 │   ├── __init__.py       # Application package
@@ -129,7 +127,7 @@ django_project/
 |   ├── blog/            # Blog static files
 |   └── staticfiles.json  # Static files manifest
 |
-├── projectstaticfiles/  # Globally available static files
+├── projectstaticfiles/  # Globally available project static files
 |
 ├── users/             # User authentication application
 │   ├── migrations/       # Database migrations
@@ -158,11 +156,17 @@ django_project/
 ├── .env                  # Environment variables
 ├── .env.example          # Environment variables example
 ├── .gitignore            # Git ignore file
+├── .dockerignore         # Docker ignore file
+├── DATABASE_OWNERSHIP.md # Database ownership instructions
 ├── DATABASE.md           # Database setup instructions
+├── datadump.json         # Database dump file (if needed for development)
+├── django_error.log      # Django error log file
+├── Dockerfile            # Docker build file
+├── docker-compose.yml    # Docker compose file
 ├── LICENSE               # License file
+├── LINUX_COMMANDS.md     # Linux commands for debugging Docker containers
 ├── manage.py             # Django management script
 ├── poetry.lock           # Poetry lock file
-├── posts.json            # Sample posts data(if needed for development)
 ├── pyproject.toml        # Poetry project file
 └── README.md             # This file
 ```
@@ -178,21 +182,18 @@ django_project/
 
 - **1. Run tests**
 
-   ```
-   python manage.py test
-   ```
+   `python manage.py test
+   `
 
 - **2. Collect static files**
 
-   ```
-   python manage.py collectstatic
-   ```
+   `python manage.py collectstatic
+   `
 
 - **3. Create new migrations**
 
-   ```
-   python manage.py makemigrations
-   ```
+   `python manage.py makemigrations
+   `
 
 ## Contributing
 
