@@ -35,6 +35,19 @@ urlpatterns: list[URLPattern] = [
     path(route="home/", view=views.home, name="blog-home"),
     path(route="about/", view=views.about, name="blog-about"),
     path(route="calendar/", view=views.calendar, name="blog-calendar"),
-    path(route="announcements/", view=views.announcements, name="blog-announcements"),
-    path(route="resources/", view=views.resources, name="blog-resources"),
+    path(
+        route="database-ownership/",
+        view=views.database_ownership,
+        name="blog-database_ownership",
+    ),
+    path(
+        route="debug-django-container/",
+        view=views.debug_django_container,
+        name="blog-debug_django_container",
+    ),
+    path(
+        route="docker-commands/",
+        view=views.docker_commands,
+        name="blog-docker_commands",
+    ),
 ]

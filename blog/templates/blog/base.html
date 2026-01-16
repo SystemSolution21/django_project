@@ -102,14 +102,17 @@
               <li class="list-group-item {% if request.resolver_match.url_name == 'post-latest' %}active{% else %}list-group-item-light{% endif %}">
                 <a class="{% if request.resolver_match.url_name == 'post-latest' %}text-white{% endif %}" href="{% url 'post-latest' %}">Latest Posts</a>
               </li>
-              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-announcements' %}active{% else %}list-group-item-light{% endif %}">
-                <a class="{% if request.resolver_match.url_name == 'blog-announcements' %}text-white{% endif %}" href="{% url 'blog-announcements' %}">Announcements</a>
+              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-database_ownership' %}active{% else %}list-group-item-light{% endif %}">
+                <a class="{% if request.resolver_match.url_name == 'blog-database_ownership' %}text-white{% endif %}" href="{% url 'blog-database_ownership' %}">Database Ownership</a>
               </li>
               <li class="list-group-item {% if request.resolver_match.url_name == 'blog-calendar' %}active{% else %}list-group-item-light{% endif %}">
                 <a class="{% if request.resolver_match.url_name == 'blog-calendar' %}text-white{% endif %}" href="{% url 'blog-calendar' %}">Calendars</a>
               </li>
-              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-resources' %}active{% else %}list-group-item-light{% endif %}">
-                <a class="{% if request.resolver_match.url_name == 'blog-resources' %}text-white{% endif %}" href="{% url 'blog-resources' %}">Resources</a>
+              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-debug_django_container' %}active{% else %}list-group-item-light{% endif %}">
+                <a class="{% if request.resolver_match.url_name == 'blog-debug_django_container' %}text-white{% endif %}" href="{% url 'blog-debug_django_container' %}">Debug Django Container</a>
+              </li>
+              <li class="list-group-item {% if request.resolver_match.url_name == 'blog-docker_commands' %}active{% else %}list-group-item-light{% endif %}">
+                <a class="{% if request.resolver_match.url_name == 'blog-docker_commands' %}text-white{% endif %}" href="{% url 'blog-docker_commands' %}">Docker Commands</a>
               </li>
             </ul>
           </div>

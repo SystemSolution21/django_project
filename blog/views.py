@@ -47,7 +47,7 @@ class PostListView(ListView):
     template_name = "blog/index.html"
     context_object_name = "posts"
     ordering: list[str] = ["-date_posted"]
-    paginate_by = 5
+    paginate_by = 3
 
 
 # List latest posts
@@ -65,7 +65,7 @@ class LatestPostListView(ListView):
     template_name = "blog/latest_posts.html"
     context_object_name = "posts"
     ordering: list[str] = ["-date_posted"]
-    paginate_by = 5
+    paginate_by = 3
 
     # Get latest posts
     def get_queryset(self) -> BaseManager[Post]:
@@ -99,7 +99,7 @@ class UserPostListView(ListView):
     model = Post
     template_name = "blog/user_posts.html"
     context_object_name = "posts"
-    paginate_by = 5
+    paginate_by = 3
 
     # Get user's posts
     def get_queryset(self) -> BaseManager[Post]:
@@ -273,9 +273,9 @@ def calendar(request) -> HttpResponse:
     )
 
 
-# Announcements page
-def announcements(request) -> HttpResponse:
-    """Announcements page view."""
+# Database Ownership page
+def database_ownership(request) -> HttpResponse:
+    """Database Ownership page view."""
     # Construct the path to DATABASE_OWNERSHIP.md
     file_path = settings.BASE_DIR / "DATABASE_OWNERSHIP.md"
 
@@ -289,16 +289,16 @@ def announcements(request) -> HttpResponse:
 
     return render(
         request=request,
-        template_name="blog/announcements.html",
+        template_name="blog/database_ownership.html",
         context={"markdown_content": html_content},
     )
 
 
-# Resources page
-def resources(request) -> HttpResponse:
-    """Resources page view."""
-    # Construct the path to LINUX_COMMANDS.md
-    file_path = settings.BASE_DIR / "LINUX_COMMANDS.md"
+# Debug Django Container page
+def debug_django_container(request) -> HttpResponse:
+    """Debug Django Container page view."""
+    # Construct the path to DEBUG_DJANGO_CONTAINER.md
+    file_path = settings.BASE_DIR / "DEBUG_DJANGO_CONTAINER.md"
 
     # Read and convert to HTML
     try:
@@ -306,10 +306,31 @@ def resources(request) -> HttpResponse:
         # 'fenced_code' extension supports the triple backticks used in markdown
         html_content = markdown(markdown_text, extensions=["fenced_code"])
     except FileNotFoundError:
-        html_content = "<p>LINUX_COMMANDS.md file not found.</p>"
+        html_content = "<p>DEBUG_DJANGO_CONTAINER.md file not found.</p>"
 
     return render(
         request=request,
-        template_name="blog/resources.html",
+        template_name="blog/debug_django_container.html",
+        context={"markdown_content": html_content},
+    )
+
+
+# Docker Commands page
+def docker_commands(request) -> HttpResponse:
+    """Docker Commands page view."""
+    # Construct the path to DOCKER_COMMANDS.md
+    file_path = settings.BASE_DIR / "DOCKER_COMMANDS.md"
+
+    # Read and convert to HTML
+    try:
+        markdown_text = file_path.read_text(encoding="utf-8")
+        # 'fenced_code' extension supports the triple backticks used in markdown
+        html_content = markdown(markdown_text, extensions=["fenced_code"])
+    except FileNotFoundError:
+        html_content = "<p>DOCKER_COMMANDS.md file not found.</p>"
+
+    return render(
+        request=request,
+        template_name="blog/docker_commands.html",
         context={"markdown_content": html_content},
     )
