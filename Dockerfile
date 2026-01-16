@@ -1,10 +1,10 @@
 # Stage 1: Build dependencies
-FROM python:3.12-slim AS builder
+FROM python:3.12.12-slim AS builder
 
 WORKDIR /app
 
 # Install Poetry
-RUN pip install poetry
+RUN pip install --upgrade pip && pip install poetry
 
 # Copy poetry configuration files
 COPY pyproject.toml poetry.lock ./
@@ -16,7 +16,7 @@ RUN pip install poetry-plugin-export
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 # Stage 2: Production Runtime
-FROM python:3.12-slim
+FROM python:3.12.12-slim
 
 WORKDIR /app
 
@@ -26,6 +26,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 # Install system dependencies required for PostgreSQL (psycopg2-binary)
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends libpq-dev gcc \
     && rm -rf /var/lib/apt/lists/*
 
@@ -33,7 +34,8 @@ RUN apt-get update \
 COPY --from=builder /app/requirements.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
 # Ensure gunicorn is installed (in case it's not in pyproject.toml)
 RUN pip install gunicorn
 
