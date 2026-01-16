@@ -3,7 +3,7 @@ services:
     build: .
     image: django_mysite_image:v0.1.0
     # Wait for DB, run migrations, then start Gunicorn
-    command: sh -c "python manage.py migrate && gunicorn mysite.wsgi:application --bind 0.0.0.0:8000"
+    command: sh -c "python manage.py migrate && gunicorn mysite.wsgi:application --bind 0.0.0.0:8000 --timeout 120"
     volumes:
       - ./media:/app/media
     ports:
