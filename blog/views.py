@@ -325,7 +325,8 @@ def docker_commands(request) -> HttpResponse:
     try:
         markdown_text = file_path.read_text(encoding="utf-8")
         # 'fenced_code' extension supports the triple backticks used in markdown
-        html_content = markdown(markdown_text, extensions=["fenced_code"])
+        # 'toc' extension generates a table of contents
+        html_content = markdown(markdown_text, extensions=["fenced_code", "toc"])
     except FileNotFoundError:
         html_content = "<p>DOCKER_COMMANDS.md file not found.</p>"
 

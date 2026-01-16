@@ -6,8 +6,8 @@ Complete guide for managing this LangChain RAG React Agent application and gener
 
 - [Container Management](#container-management)
 - [Image Management](#image-management)
-- [Logs & Debugging](#logs--debugging)
-- [Cleanup & Maintenance](#cleanup--maintenance)
+- [Logs Debugging](#logs-debugging)
+- [Cleanup Maintenance](#cleanup-maintenance)
 - [Ollama Management](#ollama-management)
 - [Resource Monitoring](#resource-monitoring)
 - [Troubleshooting](#troubleshooting)
@@ -162,7 +162,7 @@ docker rmi -f <image_name>
 
 ---
 
-## Logs & Debugging
+## Logs Debugging
 
 ### Viewing Logs
 
@@ -238,7 +238,7 @@ docker-compose exec app env
 
 ---
 
-## Cleanup & Maintenance
+## Cleanup Maintenance
 
 ### Remove Containers
 
