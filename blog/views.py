@@ -46,7 +46,7 @@ class PostListView(ListView):
     model = Post
     template_name = "blog/index.html"
     context_object_name = "posts"
-    ordering: list[str] = ["-date_posted"]
+    ordering = ["-date_posted"]
     paginate_by = 3
 
 
@@ -64,7 +64,7 @@ class LatestPostListView(ListView):
     model = Post
     template_name = "blog/latest_posts.html"
     context_object_name = "posts"
-    ordering: list[str] = ["-date_posted"]
+    ordering = ["-date_posted"]
     paginate_by = 3
 
     # Get latest posts
@@ -126,7 +126,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     """
 
     model = Post
-    fields: list[str] = ["title", "content"]
+    fields = ["title", "content"]
 
     # Set current user as author of post and validate form
     def form_valid(self, form) -> HttpResponse:
@@ -149,7 +149,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
 
     model = Post
-    fields: list[str] = ["title", "content"]
+    fields = ["title", "content"]
 
     # Set current user as author of post and validate form
     def form_valid(self, form) -> HttpResponse:
