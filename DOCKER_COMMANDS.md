@@ -166,7 +166,7 @@ docker rmi -f <image_name>
 
 ### Viewing Logs
 
-docker-compose commands is project-oriented, muust run from project directory (where docker-compose.yml exist)
+docker-compose commands is project-oriented, must run from project directory (where docker-compose.yml exist)
 
 ```bash
 # View logs from all services
@@ -193,7 +193,7 @@ docker logs -f <container_name>
 
 ### Accessing Containers
 
-docker-compose commands is project-oriented, muust run from project directory (where docker-compose.yml exist)
+docker-compose commands is project-oriented, must run from project directory (where docker-compose.yml exist)
 
 ```bash
 # Execute command in running container
