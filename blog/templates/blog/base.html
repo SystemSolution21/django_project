@@ -8,7 +8,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -16,10 +15,8 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'blog/favicon.ico' %}" />
-
     <!-- Custom styles for this template -->
     <link
       rel="stylesheet"
@@ -27,15 +24,13 @@
       href="{% static 'blog/main.css' %}"
     />
     <!-- <link rel="stylesheet" type="text/css" src="static/blog/main.css" /> -->
-
     {% if title %}
       <title>Blog - {{ title }}</title>
     {% else %}
       <title>Blog</title>
     {% endif %}
   </head>
-
-  <body>
+  <body class="d-flex flex-column" style="min-height: 100vh;">
     <!-- Header -->
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
@@ -60,7 +55,6 @@
               <a class="nav-item nav-link {% if request.resolver_match.url_name == 'blog-home' %}active{% endif %}" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link {% if request.resolver_match.url_name == 'blog-about' %}active{% endif %}" href="{% url 'blog-about' %}">About</a>
             </div>
-
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
@@ -82,7 +76,7 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
+    <main role="main" class="container" style="flex-grow: 1;">
       <div class="row">
         <div class="col-md-8">
           {% if messages %} 
