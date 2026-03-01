@@ -11,12 +11,13 @@ python = "^3.12"
 django = "~5.1.14"
 django-crispy-forms = "^2.3"
 crispy-bootstrap4 = "^2024.10"
-pillow = "^12.1.0"
+pillow = "^12.1.1"
 python-dotenv = "^1.0.1"
 markdown = "^3.10"
 whitenoise = "^6.11.0"
 gunicorn = "^23.0.0"
 psycopg2-binary = "^2.9.11"
+sqlparse = "^0.5.4"
 
 
 [build-system]

@@ -76,7 +76,7 @@ The application will be available at `http://127.0.0.1:8000/`. The database data
 
 ## Project Structure
 
-```project structure
+```
 django_project/
 ├── blog/             # Blog application
 │   ├── migrations/       # Database migrations

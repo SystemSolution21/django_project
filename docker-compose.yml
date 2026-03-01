@@ -3,7 +3,7 @@ services:
     build: .
     image: django_mysite_image:v0.1.0
     # Wait for DB, run migrations, then start Gunicorn
-    command: sh -c "python manage.py migrate && gunicorn mysite.wsgi:application --bind 0.0.0.0:8000 --timeout 120"
+    command: sh -c "python manage.py migrate && gunicorn mysite.wsgi:application -c gunicorn.conf.py"
     volumes:
       - ./media:/app/media
     ports:
@@ -18,16 +18,23 @@ services:
       - DATABASE_PORT=5432
       - SQL_HOST=db
       - SQL_PORT=5432
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/admin/login/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   db:
     image: postgres:17-alpine
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      # These should match .env file or Django settings
       - POSTGRES_DB=${SQL_DATABASE:-django_mysite_db}
       - POSTGRES_USER=${SQL_USER:-django_mysite_user}
-      - POSTGRES_PASSWORD=${SQL_PASSWORD:-django_mysite_password}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
     healthcheck:
       test:
         [
